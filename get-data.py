@@ -1,7 +1,6 @@
 #!/usr/local/python-3.8.9/bin/bin/python3
 import requests, json
 import mysql.connector
-import time
 import datetime
 #from datetime import datetime
 
