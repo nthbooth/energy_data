@@ -16,5 +16,5 @@ config file needs needs to be copied to config.txt and updated with your authent
 todo: 
 * package lists
 * build script
-
+* fix the fact db schema is in config file and comanndline args
 
