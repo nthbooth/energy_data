@@ -1,5 +1,6 @@
-[config]
-db=
-dbuser=
-dbpassword=
-n3rgysecret=
+[dbconfig]
+db=power
+dbuser=power
+dbpasswd=dbpassword
+[n3rgy]
+secret=MAC

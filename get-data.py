@@ -2,12 +2,24 @@
 import requests, json
 import mysql.connector
 import datetime
+import configparser
 #from datetime import datetime
 
-dbtouse="power"
-dbuser="powere"
-dbpassword="password"
-headers= {'Authorization': 'n3gykey'}
+config=configparser.ConfigParser()
+config.read("config.txt")
+
+dbtouse=config.get("dbconfig","db")
+dbuser=config.get("dbconfig","dbuser")
+dbpassword=config.get("dbconfig","dbpasswd")
+n3rgysecret=config.get("n3rgy","secret")
+
+headers= {'Authorization': n3rgysecret}
+
+print(dbtouse)
+print(dbuser)
+print(dbpassword)
+print(n3rgysecret)
+
 cnx = mysql.connector.connect(user=dbuser, password=dbpassword,
                               host='127.0.0.1',
                               database=dbtouse)
