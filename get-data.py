@@ -15,11 +15,6 @@ n3rgysecret=config.get("n3rgy","secret")
 
 headers= {'Authorization': n3rgysecret}
 
-print(dbtouse)
-print(dbuser)
-print(dbpassword)
-print(n3rgysecret)
-
 cnx = mysql.connector.connect(user=dbuser, password=dbpassword,
                               host='127.0.0.1',
                               database=dbtouse)
