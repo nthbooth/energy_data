@@ -14,8 +14,8 @@ For display I used metabase opensource https://www.metabase.com/
 config file needs needs to be copied to config.txt and updated with your authentication data for n3rgy and the mysql db
 
 todo: 
-* package lists
-* build script
-* fix the fact that the db schema is in config file and comanndline args
-* clean up tables.sql
+  * package lists
+  * build script
+  * fix the fact that the db schema is in config file and comanndline args
+  * clean up tables.sql
 
