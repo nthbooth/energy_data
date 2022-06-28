@@ -5,9 +5,9 @@ Warning this is not the nicest in anyway shape of form.
 
 Built using Python3.8
 
-tables.sql include the table defs.
-get-data.py update with the DB user/password and n3gry auth details.  
-run_get_data.sh run from crontab.
+tables.sql - include the table defs.
+get_n3rgy_data.py - script that gets the data
+run_get_data.sh - run from crontab.
 
 For display I used metabase opensource https://www.metabase.com/
 
@@ -16,5 +16,6 @@ config file needs needs to be copied to config.txt and updated with your authent
 todo: 
 * package lists
 * build script
-* fix the fact db schema is in config file and comanndline args
+* fix the fact that the db schema is in config file and comanndline args
+* clean up tables.sql
 
