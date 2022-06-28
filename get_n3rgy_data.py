@@ -1,5 +1,5 @@
 #!/usr/local/python-3.8.9/bin/bin/python3
-import requests, json
+import requests
 import mysql.connector
 import datetime
 import argparse
