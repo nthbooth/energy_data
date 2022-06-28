@@ -66,7 +66,7 @@ for value in jsondata["values"]:
     cursor.execute(add_data,data)
 add_data_last_timestamp=("""insert into smartmeter_last_timestamps (metric,timestamp) values (%s, %s) on duplicate key update timestamp=%s""")
 data_last_timestamp=(metric,current_timestamp,current_timestamp)
-cursor.execute(add_data_last_timestamp,data_last_timestamp)   
+cursor.execute(add_data_last_timestamp,data_last_timestamp)
 
 cnx.commit()
 cursor.close()
