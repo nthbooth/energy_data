@@ -18,18 +18,17 @@ headers= {'Authorization': n3rgysecret}
 
 argparser = argparse.ArgumentParser()
 argparser.add_argument("metric", type=str, default="electricity", help="gas electricity")
-argparser.add_argument("db", type=str, default="power", help="DB Name")
+#argparser.add_argument("db", type=str, default="power", help="DB Name")
 args = argparser.parse_args()
 
 metric=args.metric
-dbtouse=args.db
+#dbtouse=args.db
 cnx = mysql.connector.connect(user=dbuser, password=dbpassword,
                               host='127.0.0.1',
                               database=dbtouse)
 
 query_cursor = cnx.cursor()
-#try:
-#query_cursor.execute("select DATE_FORMAT(max(timestamp), '%Y%m%d') from smartmeter_consumption");
+
 if metric=="gas":
    query_cursor.execute("select DATE_FORMAT(max(timestamp), '%Y%m%d') from smartmeter_last_timestamps where metric='gas'")
 if metric=="electricity":
