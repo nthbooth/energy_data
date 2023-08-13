@@ -4,3 +4,4 @@ dbuser=power
 dbpasswd=dbpassword
 [n3rgy]
 secret=MAC
+moveindate=20220101

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import requests
 import mysql.connector
 import datetime
@@ -13,7 +13,7 @@ dbtouse=config.get("dbconfig","db")
 dbuser=config.get("dbconfig","dbuser")
 dbpassword=config.get("dbconfig","dbpasswd")
 n3rgysecret=config.get("n3rgy","secret")
-
+n3rgymoveindate=config.get("n3rgy","moveindate")
 headers= {'Authorization': n3rgysecret}
 
 argparser = argparse.ArgumentParser()
@@ -38,7 +38,7 @@ if metric=="electricity":
 timestamp=query_cursor.fetchall()
 first_timestamp=timestamp[0][0]
 if first_timestamp is None:
-    first_timestamp="20210530"
+    first_timestamp=n3rgymoveindate
 
 end_date=datetime.datetime.strptime(first_timestamp, "%Y%m%d") + datetime.timedelta(days=90)
 end_date=end_date.strftime('%Y%m%d')
@@ -58,6 +58,8 @@ if metric=="gas":
 
 if metric=="electricity":
    add_data=("""insert into smartmeter_consumption (timestamp, electricity) values (%s, %s) on duplicate key update electricity=%s""")
+
+#print(jsondata);
 
 for value in jsondata["values"]:
     current_timestamp= datetime.datetime.strptime(value["timestamp"], '%Y-%m-%d %H:%M')
