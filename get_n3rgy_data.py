@@ -1,4 +1,4 @@
-#!/usr/local/python-3.8.9/bin/bin/python3
+#!/usr/bin/python
 import requests
 import mysql.connector
 import datetime
