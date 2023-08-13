@@ -5,6 +5,16 @@ Warning this is not the nicest in anyway shape of form.
 
 Built using Python3.8
 
+usage: get_n3rgy_data.py [-h] metric inout
+
+positional arguments:
+  metric      gas electricity
+  inout       consumption production
+
+optional arguments:
+  -h, --help  show this help message and exit
+
+
 tables.sql - include the table defs.
 get_n3rgy_data.py - script that gets the data
 run_get_data.sh - run from crontab.
