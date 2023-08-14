@@ -34,6 +34,7 @@ query_cursor = cnx.cursor()
 
 if metric=="gas":
    query_cursor.execute("select DATE_FORMAT(max(timestamp), '%Y%m%d') from smartmeter_last_timestamps where metric='gas'")
+
 if metric=="electricity":
    if inout=="production":
       query_cursor.execute("select DATE_FORMAT(max(timestamp), '%Y%m%d') from smartmeter_last_timestamps where metric='electricity_production'")
@@ -73,16 +74,21 @@ if metric=="gas":
 if metric=="electricity":
    if inout=="consumption":
       add_data=("""insert into smartmeter_consumption (timestamp, electricity) values (%s, %s) on duplicate key update electricity=%s""")
+
 if metric=="electricity":
    if inout=="production":
       add_data=("""insert into smartmeter_consumption (timestamp, electricity_production) values (%s, %s) on duplicate key update electricity_production=%s""")
+
 #electricity_production
-#print(jsondata);
+print(jsondata);
 
 for value in jsondata["values"]:
     current_timestamp=datetime.datetime.strptime(value["timestamp"], '%Y-%m-%d %H:%M')
     data=(current_timestamp,value["value"],value["value"])
-    cursor.execute(add_data,data)
+    if metric=="gas":
+       if data!=16777.2:
+          cursor.execute(add_data,data)
+#there is a bug where n3rgy reports 16777.2 instad of the actual value this is actually a meter error and hence this is not valid data. (gas only)
 
 add_data_last_timestamp=("""insert into smartmeter_last_timestamps (metric,timestamp) values (%s, %s) on duplicate key update timestamp=%s""")
 
