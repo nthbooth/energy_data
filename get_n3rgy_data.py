@@ -86,9 +86,9 @@ for value in jsondata["values"]:
     current_timestamp=datetime.datetime.strptime(value["timestamp"], '%Y-%m-%d %H:%M')
     data=(current_timestamp,value["value"],value["value"])
     if metric=="gas":
-       if data!=16777.2:
+       if data!=16777.215:
           cursor.execute(add_data,data)
-#there is a bug where n3rgy reports 16777.2 instad of the actual value this is actually a meter error and hence this is not valid data. (gas only)
+#there is a bug where n3rgy reports 16777.215 instad of the actual value this is actually a meter error and hence this is not valid data. (gas only)
 
 add_data_last_timestamp=("""insert into smartmeter_last_timestamps (metric,timestamp) values (%s, %s) on duplicate key update timestamp=%s""")
 
