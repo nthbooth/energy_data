@@ -1,8 +1,8 @@
 use power
 create table smartmeter_consumption(
-electricity float default NULL,
-electricity_production float default NULL,
-gas float default NULL,
+electricity double default NULL,
+electricity_production double default NULL,
+gas double default NULL,
 timestamp DATETIME NOT NULL, 
 UNIQUE (timestamp)
 );
