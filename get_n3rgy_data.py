@@ -4,7 +4,7 @@ import mysql.connector
 import datetime
 import argparse
 import configparser
-
+import math
 
 config=configparser.ConfigParser()
 config.read("config.txt")
@@ -16,6 +16,11 @@ n3rgysecret=config.get("n3rgy","secret")
 n3rgymoveindate=config.get("n3rgy","moveindate")
 n3rgyproductionstartdate=config.get("n3rgy","productionstartdate")
 headers= {'Authorization': n3rgysecret}
+
+volume_correction=config.get("gas","volume_correction")
+calorific_value=config.get("gas","calorific_value")
+joules_conversion=config.get("gas","joules_conversion")
+
 
 argparser = argparse.ArgumentParser()
 argparser.add_argument("metric", type=str, default="electricity", help="gas electricity")
@@ -64,12 +69,13 @@ r=requests.get(url,headers=headers)
 jsondata=r.json()
 r.close()
 
-
+print(url)
 cursor = cnx.cursor()
 
 
 if metric=="gas":
    add_data=("""insert into smartmeter_consumption (timestamp, gas) values (%s, %s) on duplicate key update gas=%s""")
+   add_data_kwh=("""insert into smartmeter_consumption (timestamp, gas_kwh) values (%s, %s) on duplicate key update gas_kwh=%s""")
 
 if metric=="electricity":
    if inout=="consumption":
@@ -86,10 +92,15 @@ for value in jsondata["values"]:
     current_timestamp=datetime.datetime.strptime(value["timestamp"], '%Y-%m-%d %H:%M')
     data=(current_timestamp,value["value"],value["value"])
     if metric=="gas":
-       if data!=16777.215:
+       if math.isclose(value["value"],16777.215):
+         a=1 
+       else:
+          gaskwh=float(value["value"])*float(volume_correction)*float(calorific_value)/float(joules_conversion)
+          gaskwh_data=(current_timestamp,gaskwh,gaskwh)
           cursor.execute(add_data,data)
+          cursor.execute(add_data_kwh,gaskwh_data)
 #there is a bug where n3rgy reports 16777.215 instad of the actual value this is actually a meter error and hence this is not valid data. (gas only)
-
+#'value': 16777.215},
 add_data_last_timestamp=("""insert into smartmeter_last_timestamps (metric,timestamp) values (%s, %s) on duplicate key update timestamp=%s""")
 
 if inout=="consumption":
