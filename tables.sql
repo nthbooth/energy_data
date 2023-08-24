@@ -13,6 +13,7 @@ create unique index index_smartmeter_consumption on smartmeter_consumption (time
 
 create table smartmeter_last_timestamps(
 metric varchar(30) not null,
-timestamp DATETIME not null
+timestamp DATETIME not null,
+unique(metric)
 );
 
