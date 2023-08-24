@@ -5,6 +5,7 @@ dbpasswd=dbpassword
 [n3rgy]
 secret=MAC
 moveindate=20220101
+productionstartdate=20221113
 [gas]
 volume_correction=1.02264
 calorific_value=39.4
