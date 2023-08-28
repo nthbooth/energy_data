@@ -10,3 +10,8 @@ productionstartdate=20221113
 volume_correction=1.02264
 calorific_value=39.4
 joules_conversion=3.6
+
+[solaredge]
+apikey=XXXXXXXXXXXXXXXXXXXXXXXXX
+site=1234567
+firstgernationdate=20220615
