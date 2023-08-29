@@ -1,3 +1,5 @@
 #!/bin/sh
-/usr/bin/python /usr/local/n3rgy/get_n3rgy_data.py electricity 
-/usr/bin/python /usr/local/n3rgy/get_n3rgy_data.py gas 
+./get_data_solaredge.py 
+./get_data_n3rgy.py  electricity consumption 
+./get_data_n3rgy.py electricity production 
+./get_data_n3rgy.py gas consumption
