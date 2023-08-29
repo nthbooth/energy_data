@@ -1,4 +1,7 @@
-# n3rgy
+# n3rgy and solaredge
+
+All below needs to be rewritten! 
+
 Get data from n3rgy for electrisity and gas and write into a mysql db.
 
 Warning this is not the nicest in anyway shape of form.
